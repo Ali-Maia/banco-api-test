@@ -1,20 +1,13 @@
 const request = require('supertest')
 const { expect } = require('chai')
 require('dotenv').config()
+const { obterToken } = require('../helpers/autenticacao')
 
 describe('Transferências', () => {
   describe('POST /transferencias', () => {
     it('Deve retornar sucesso com 201 quando o valor da transferência for igual ou acima de R$ 10,00', async () => {
-      // Capturar o token
-      const respostaLogin = await request(process.env.BASE_URL) 
-        .post('/login') // método a ser utilizado
-        .set('Content-Type', 'application/json') //cabeçalho da requisição e de qual tipo
-        .send({ //O que será mandado para a api
-          'username': 'junio.lima',
-          'senha': '123456'
-        })
 
-      const token = respostaLogin.body.token
+      const token = await obterToken('junio.lima', '123456')
 
       const resposta = await request(process.env.BASE_URL)
         .post('/transferencias')
@@ -31,16 +24,7 @@ describe('Transferências', () => {
     })
     it('Deve retornar sucesso com 402 quando o valor da transferência for abaixo de R$ 10,00', async () => {
 
-            // Capturar o token
-      const respostaLogin = await request(process.env.BASE_URL) 
-        .post('/login') // método a ser utilizado
-        .set('Content-Type', 'application/json') //cabeçalho da requisição e de qual tipo
-        .send({ //O que será mandado para a api
-          'username': 'junio.lima',
-          'senha': '123456'
-        })
-
-      const token = respostaLogin.body.token
+      const token = await obterToken('junio.lima', '123456')
 
       const resposta = await request(process.env.BASE_URL)
         .post('/transferencias')
