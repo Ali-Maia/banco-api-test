@@ -1,12 +1,13 @@
-const request = require('supertest');
-const {expect} = require('chai');
+const request = require('supertest')
+const {expect} = require('chai')
+require('dotenv').config()
 
 // 1 - mocha para estrutrar e executar os testes
 describe('Login', () => {
   describe('POST /login', () => {
     it('Deve retornar 200 com token em string quando usar credenciais válidas', async () => {
       // 2 - SUPERTEST para fazer a requisção na API
-        const resposta = await request('http://localhost:3000') 
+        const resposta = await request(process.env.BASE_URL) 
           .post('/login') // método a ser utilizado
           .set('Content-Type', 'application/json') //cabeçalho da requisição e de qual tipo
           .send({ //O que será mandado para a api
