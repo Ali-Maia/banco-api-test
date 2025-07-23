@@ -1,5 +1,9 @@
 # Banco API Test
 
+<p align="center">
+  <img alt="projeto Habits" src=".github/preview.jpg" width="100%">
+</p>
+
 Repositório de automação de testes para a API REST do projeto [banco-api](https://github.com/juliodelimas/banco-api).
 
 ## 📅 Objetivo
